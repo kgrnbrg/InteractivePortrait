@@ -1,0 +1,85 @@
+<html>
+<head>
+  <body background="/LiveWeb/portrait/imgs/laser.jpg">
+<style>
+    body{
+        background-color: black;
+
+    }
+
+    #container{
+        margin: auto;
+        width: 100%;
+        height:100%;
+
+    }
+
+    #mycanvas{
+
+
+    }
+</style>
+</head>
+<body>
+<div id = "container">
+<canvas width="1000" height="1000" id="mycanvas">
+<audio controls autoplay src="/LiveWeb/portrait/audio/fresh.mp3"/>
+
+ </canvas> 
+
+<script>
+
+	var canvas = document.getElementById('mycanvas');
+	var context = canvas.getContext('2d');
+
+	var img = new Array(5);
+
+	for(var i = 0; i < img.length; i++){
+		img[i] = new Image();
+		img[i].src = '/LiveWeb/portrait/imgs/portrait'+i+'.jpg';
+
+	}
+
+	function getMousePos(canvas, evt) {
+        var rect = canvas.getBoundingClientRect();
+        return {
+          x: evt.clientX - rect.left,
+          y: evt.clientY - rect.top
+        };
+      }
+
+      canvas.addEventListener('mousemove', function(evt) {
+        var mousePos = getMousePos(canvas, evt);
+        var point = 'Mouse position: ' + mousePos.x + ',' + mousePos.y;
+        console.log(point);
+
+    if(mousePos.x > 300 && mousePos.x < 500){
+		context.drawImage(img[0], 0, 0);
+    }
+    else if(mousePos.x > 300 && mousePos.y > 300){
+        context.drawImage(img[4], 0, 0);
+    }
+    else if(mousePos.x < 500 && mousePos.y > 300){
+        context.drawImage(img[2], 0, 0);
+    }    
+    else if(mousePos.x < 500 && mousePos.y < 300){
+        context.drawImage(img[1], 0, 0);
+    }
+    else if(mousePos.x > 300 && mousePos.y < 300){
+        context.drawImage(img[3], 0, 0);
+    }
+  
+
+      }, false);
+
+      </script>
+     
+  </div>
+      </body>
+      </html>
+
+	
+
+
+
+		
